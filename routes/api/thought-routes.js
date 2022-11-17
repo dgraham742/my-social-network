@@ -4,15 +4,15 @@ const {
     getAllThoughts,
     getThoughtById,
     addThoughts,
-    updateThoughts,
-    deleteThoughts,
+    updateThought,
+    removeThought,
     addReaction,
     deleteReaction
 } = require('../../Controllers/thoughts-controllers');
 
 router.route('/').get(getAllThoughts);
 
-router.route(':id').get(getThoughtById).put(updateThoughts).delete(deleteThoughts);
+router.route(':id').get(getThoughtById).put(updateThought).delete(removeThought);
 
 router.route('/:userId').post(addThoughts);
 

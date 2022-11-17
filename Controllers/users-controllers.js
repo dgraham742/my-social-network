@@ -4,7 +4,7 @@ const {User } = require('../Models');
 const UserController = {
     //get all users
     getAllUsers(req,res) {
-        Users.find([])
+        User.find([])
         .populate({
             path:'thoughts',
             slect:'-__v'
