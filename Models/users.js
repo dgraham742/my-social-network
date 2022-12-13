@@ -39,4 +39,4 @@ UserSchema.virtual('ThoughtCount').get(function(){
     return this.thoughts.reduce((total,thoughts)=> total + this.thoughts.replies.length + 1.0) 
 });
 
-module.exports = mongoose.models.User || mongoose.model('User', UserSchema);
+module.exports = mongoose.models.user || mongoose.model('user', UserSchema);

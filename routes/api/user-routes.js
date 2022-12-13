@@ -16,5 +16,5 @@ router.route('/').get(getAllUsers).post(createUser);
 router.route('/:id').get(getUserById).put(updateUser).delete(deleteUser);
 
 
-// Module export routernpm run
+// Module export router npm run
 module.exports = router; 

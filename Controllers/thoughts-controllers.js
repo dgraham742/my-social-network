@@ -7,7 +7,7 @@ const thoughtController = {
         thoughts.create(body)
         .then(({_id})=> {
             return users.findOneAndUpdate(
-                {_id:params.pizzaId},
+                {_id:params.userId},
                 {new:true}
             );
         })
@@ -43,23 +43,16 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
     //get all thoughts
-    getAllThoughts({params,body}, res) {
-        thoughts.findAll({})
-        .populate({path:'reactions', select:'-__v'})
+    getAllThoughts(req,res) {
+        thoughts.find({})
+        .populate({path: 'reactions', select: '-__v'})
         .select('-__v')
-        .then(dbUserData => res.json(dbUserData))
+        // .sort({_id: -1})
+        .then(dbThoughtsData => res.json(dbThoughtsData))
         .catch(err => {
-            print(err);
-            res.status(500).json(err)
-        })
-        .then(dbUserData=> {
-            if(!dbUserData) {
-                res.status(404).json({ Message:'No thought Found with this ID!'});
-                return;
-            }
-            res.json(dbUserData);
-        })
-        .catch(err => res.json(err));
+            console.log(err);
+            res.status(500).json(err);
+        });
     },
     //get a thought by ID
     getThoughtById({params}, res) {
@@ -119,4 +112,4 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     }
 };
-module.export=thoughtController
+module.exports= thoughtController
