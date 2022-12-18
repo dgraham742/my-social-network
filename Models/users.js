@@ -36,7 +36,8 @@ const UserSchema = new Schema(
 
 //get total count of comments and replies on retrieval
 UserSchema.virtual('ThoughtCount').get(function(){
-    return this.thoughts.reduce((total,thoughts)=> total + this.thoughts.replies.length + 1.0) 
+if (this.thoughts.length >0) this.thoughts.reduce((total,thoughts)=> total + this.thoughts.replies.length + 1.0) 
+ 
 });
 
 module.exports = mongoose.models.user || mongoose.model('user', UserSchema);
